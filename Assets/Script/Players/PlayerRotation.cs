@@ -1,15 +1,9 @@
 using UnityEngine;
 
-
 public class PlayerRotation : MonoBehaviour
 {
     [SerializeField] private float rotationSpeed = 0.5f;
     private float yaw;
-
-    private void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
 
     private void Update()
     {

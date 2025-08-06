@@ -1,16 +1,12 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class PlayerJump : MonoBehaviour
 {
     [SerializeField] private float jumpForce = 10f;
-    private bool isGrounded = true;
     private Rigidbody rb;
+    private bool isGrounded = true;
 
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
+    private void Awake() => rb = GetComponent<Rigidbody>();
 
     private void Update()
     {
@@ -18,13 +14,12 @@ public class PlayerJump : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isGrounded = false;
-            Debug.Log("Jumped");
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision col)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (col.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
         }

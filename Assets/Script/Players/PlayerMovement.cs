@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
     }
 
     private void FixedUpdate()
@@ -16,9 +17,7 @@ public class PlayerMovement : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
-        Vector3 direction = transform.forward * v + transform.right * h;
-        Vector3 velocity = direction.normalized * moveSpeed;
-
-        rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+        Vector3 move = transform.forward * v + transform.right * h;
+        rb.MovePosition(rb.position + move.normalized * moveSpeed * Time.fixedDeltaTime);
     }
 }
